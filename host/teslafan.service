@@ -1,0 +1,12 @@
+[Unit]
+Description=Tesla fan controller daemon
+
+[Service]
+User=root
+Group=root
+LimitNOFILE=65536
+ExecStart=/usr/local/bin/teslafan -c /dev/teslafan -g 1
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

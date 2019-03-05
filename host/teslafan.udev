@@ -1,0 +1,4 @@
+# /etc/udev/rules.d/88-teslafan.rules
+ 
+# Arduino Nano based fan controller
+SUBSYSTEM=="tty", ATTRS{serial}=="0000:02:00.0", SYMLINK+="teslafan", MODE="0777"
