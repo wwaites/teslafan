@@ -149,15 +149,13 @@ int main(int argc, char *argv[]) {
         }
 
         error = temp - target;
-        if (abs(error) > 1) {
-            float newpwm = 96 + k * error;
-            if (newpwm > 255)
-                newpwm = 255;
-            if (newpwm < 0)
-                newpwm = 0;
-            if (abs(newpwm - pwm) > 1) {
-                syslog(LOG_INFO, "Device %i temperature is %i. PWM setting is %i, changing to %f", devidx, temp, pwm, newpwm);
-            }
+        float newpwm = 96 + k * error;
+        if (newpwm > 255)
+            newpwm = 255;
+        if (newpwm < 0)
+            newpwm = 0;
+        if (abs(newpwm - pwm) > 1) {
+            syslog(LOG_INFO, "Device %i temperature is %i. PWM setting is %i, changing to %f", devidx, temp, pwm, newpwm);
             pwm = newpwm;
             write(ctl, &pwm, 1);
             fsync(ctl);

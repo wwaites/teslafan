@@ -12,7 +12,7 @@ void setup() {
   // set the PWM timer to high frequency (low divisor) to stop
   // audible whine
   TCCR2B = (TCCR2B & 0b11111000) | 0x01;
-  analogWrite(FAN_PIN, 63);
+  analogWrite(FAN_PIN, 128);
 }
 
 void loop() {
